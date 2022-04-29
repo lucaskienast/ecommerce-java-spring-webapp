@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+    <form action="/api/v1/auth/login" method="post">
+		<h2 align="center">SportyShoes Login</h2>
+		<hr />
+		<table align="center">
+			<tr>
+				<td>Email:<td>
+				<td><input type="text" name="email"/><td>
+			</tr>
+			<tr>
+				<td>Password:<td>
+				<td><input type="password" name="password"/><td>
+				<td align="center"><input type="submit" name="Login" value="Login"/><td>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td><a href="register">Register</a> as a new customer</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
