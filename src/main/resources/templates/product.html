@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product</title>
+<style type="text/css">
+	table {border: 0;}
+	table td {padding: 10px;}
+	table th {padding: 10px;}
+	input {width: 70px;}
+</style>
+</head>
+<body>
+    <form action="buy_product" method="post" align="center">
+		<h1 th:text="${productLine.name}"></h1>
+		<hr/>
+		<table align="center">
+			<tr>
+				<th></th>
+				<th>Brand</th>
+				<th>Price</th>
+				<th>Size</th>
+				<th>Amount</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>
+					<input type="hidden" name="price" th:value="${productLine.price}"/>
+				</td>
+				<td th:text="${productLine.brand}" />
+				<td th:text="${productLine.price}" />
+				<td>
+					<select name="productId">
+			    		<option th:each="i : ${products}" th:value="${i.id}" th:text="${i.size} + ', (' + ${i.inStockAmount} + ' left)'">
+						</option>
+					</select>
+				</td>
+				<td>
+					<input type="number" name="amount" value="0"/>
+				</td>
+				<td>
+					<input type="submit" value="Buy"/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<a href="shopHome">Back</a> to shop
+	</form>
+</body>
+</html>

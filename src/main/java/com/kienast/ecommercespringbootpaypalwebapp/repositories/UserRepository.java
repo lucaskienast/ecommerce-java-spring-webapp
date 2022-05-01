@@ -5,6 +5,6 @@ import com.kienast.ecommercespringbootpaypalwebapp.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	
+	User findByUsername(String username);	
 
 }

@@ -23,25 +23,32 @@ public class AuthService {
 	@Autowired
 	ContactRepository contactRepository;
 	
-	public String login(User user) {
-		// get all users
-		List<User> allUsers = userRepository.findAll();
+	public User login(User user) {
 		
-		for (User u : allUsers) {
-			LOGGER.info("{}", u);
+		LOGGER.info("Given user -> {}", user);
+		/*
+		List<User> foundUsers = userRepository.findAll();
+		LOGGER.info("Found users -> {}", foundUsers.size());
+		LOGGER.info("Found username -> {}", foundUsers.get(0).getUsername());
+		LOGGER.info("Found password -> {}", foundUsers.get(0).getPassword());
+		LOGGER.info("Found user -> {}", foundUsers.get(0));
+		LOGGER.info("Found contact -> {}", foundUsers.get(0).getContact());
+		*/
+		
+		User foundUser = userRepository.findByUsername(user.getUsername());
+		LOGGER.info("Found user -> {}", foundUser);
+		LOGGER.info("Found contact -> {}", foundUser.getContact());
+
+		LOGGER.info("Given username -> {}", user.getUsername());
+		LOGGER.info("Found username -> {}", foundUser.getUsername());
+		LOGGER.info("Found password -> {}", foundUser.getPassword());
+		LOGGER.info("Found password -> {}", foundUser.getPassword());
+
+		if (!foundUser.getPassword().equals(user.getPassword())) {
+			return null;
 		}
-		
-		// look for username in users
-		
-		// return null when no username found
-		
-		// check if found user password matches given
-		
-		// return null when incorrect
-		
-		// return user bean if correct
-		
-		return "login";
+				
+		return foundUser;
 	}
 	
 	public User register(User user) {
@@ -53,6 +60,33 @@ public class AuthService {
 		LOGGER.info("Saved user -> {}", savedUser);
 		
 		return savedUser;
+	}
+	
+	public User changePassword(User user) {
+		
+		LOGGER.info("Given user -> {}", user);
+		
+		User foundUser = userRepository.findByUsername(user.getUsername());
+		LOGGER.info("Found user -> {}", foundUser);
+		
+		foundUser.setPassword(user.getPassword());
+		User savedUser = userRepository.save(foundUser);
+		LOGGER.info("Saved user -> {}", savedUser);
+
+		return savedUser;
+	}
+	
+	public List<User> getAllUsers() {
+				
+		List<User> allUsers = userRepository.findAll();
+		LOGGER.info("Found users -> {}", allUsers);
+		
+		return allUsers;
+	}
+	
+	public User getUserByUsername(User user) {
+		User foundUser = userRepository.findByUsername(user.getUsername());
+		return foundUser;
 	}
 
 }

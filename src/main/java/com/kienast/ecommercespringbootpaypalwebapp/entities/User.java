@@ -1,5 +1,6 @@
 package com.kienast.ecommercespringbootpaypalwebapp.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,9 @@ public class User {
 	@OneToOne(fetch=FetchType.LAZY)
 	private Contact contact;
 	
+	@Column(unique = true)
 	private String username;
+	
 	private String password;
 	private String firstName;
 	private String lastName;
@@ -80,8 +83,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", contact=" + contact + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + "]";
 	}
 
 }

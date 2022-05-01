@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Payment List</title>
+<style type="text/css">
+	table {border: 0;}
+	table td {padding: 10px;}
+	table th {padding: 10px;}
+	input {width: 100px;}
+</style>
+</head>
+<body>
+    <form action="filter_payments_date" method="post" align="center">
+		<h1>Payment List</h1>
+		<hr/>
+		<input type="text" name="date" placeholder="YYYY-MM-DD" />
+		<input type="submit" value="Search" />
+		<table align="center">
+			<tr>
+				<th>Payment Id</th>
+				<th>Order Id</th>
+				<th>Paid Total</th>
+				<th>Payment Date</th>
+			</tr>
+			<tr th:each="payment : ${payments}">
+				<td th:text="${payment.id}" />
+				<td th:text="${payment.productOrder.id}" />
+				<td th:text="${payment.total}" />
+				<td th:text="${payment.createdAt}" />
+			</tr>
+		</table>
+		<br/>
+		<a href="adminHome">Back</a> to admin page
+	</form>
+</body>
+</html>

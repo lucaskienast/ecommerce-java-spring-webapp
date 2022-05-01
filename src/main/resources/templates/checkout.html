@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Checkout</title>
+<style type="text/css">
+	table {border: 0;}
+	table td {padding: 10px;}
+	table th {padding: 10px;}
+</style>
+</head>
+<body>
+    <form action="authorize_payment" method="post" align="center">
+		<h1>Checkout</h1>
+		<hr/>
+		<table align="center">
+			<tr>
+				<td>Product:</td>
+				<td>
+					<input type="text" th:value="${productId}" disabled/>
+				</td>
+				<td>
+					<input type="hidden" name="productId" th:value="${productId}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Amount:</td>
+				<td><input type="text" name="amount" th:value="${amount}"/></td>
+			</tr>
+			<tr>
+				<td>Price:</td>
+				<td><input type="text" name="price" th:value="${price}"/></td>
+			</tr>
+			<tr>
+				<td>Sub Total:</td>
+				<td><input type="text" name="subtotal" th:value="${subtotal}"/></td>
+			</tr>
+			<tr>
+				<td>Shipping:</td>
+				<td><input type="text" name="shipping" th:value="${shipping}"/></td>
+			</tr>
+			<tr>
+				<td>Tax:</td>
+				<td><input type="text" name="tax" th:value="${tax}"/></td>
+			</tr>
+			<tr>
+				<td>Total:</td>
+				<td><input type="text" name="total" th:value="${total}"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="Pay with PayPal"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					(This is a dummy transaction using PayPal API)
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<a href="shopHome">Back</a> to shop
+	</form>
+</body>
+</html>
